@@ -15,8 +15,8 @@ FROM php:7.4-apache
 
 RUN apt-get update &&\
   # WebP 対応
-  apt-get install -y zlib1g-dev libpng-dev libwebp-dev &&\
-  docker-php-ext-configure gd --with-webp &&\
+  apt-get install -y zlib1g-dev libjpeg-dev libpng-dev libwebp-dev &&\
+  docker-php-ext-configure gd --with-jpeg --with-webp &&\
   docker-php-ext-install -j$(nproc) gd
 </pre>
 
