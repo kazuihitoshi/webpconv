@@ -23,3 +23,8 @@ RUN apt-get update &&\
 以下を参考にさせていただきました。
 
 [Docker 公式 PHP 7.4 イメージで GD ライブラリをインストールする方法](https://tt-computing.com/docker-php-gd#webp)
+
+## dockerでの実行例
+<pre>
+docker run -it --mount type=bind,source=対象フォルダ,target=マウント先フォルダ イメージ名 /bin/bash
+</pre>
