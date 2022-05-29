@@ -25,6 +25,16 @@ RUN apt-get update &&\
 [Docker 公式 PHP 7.4 イメージで GD ライブラリをインストールする方法](https://tt-computing.com/docker-php-gd#webp)
 
 ## dockerでの実行例
+### docker image 作成
 <pre>
-docker run -it --mount type=bind,source=対象フォルダ,target=マウント先フォルダ イメージ名 /bin/bash
+docker build -t php-gd-web .
 </pre>
+### 変換実施
+<pre>
+docker run -it --mount type=bind,source=`pwd`,target=/conv php-gd-web /bin/bash
+webpconv.php *.png *.jpg *.gif
+</pre>
+
+## 添付の画像について
+ 以下よりダウンロードしたものを使用
+https://www.pakutaso.com/20191105315post-24146.html
