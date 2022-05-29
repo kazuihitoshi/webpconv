@@ -29,6 +29,13 @@ RUN apt-get update &&\
 <pre>
 docker build -t php-gd-web .
 </pre>
+
+### sample画像の変換
+<pre>
+docker run -it --mount type=bind,source=`pwd`,target=/conv php-gd-web /bin/bash
+webpconv.php sample/*
+</pre>
+
 ### 変換実施
 <pre>
 docker run -it --mount type=bind,source=`pwd`,target=/conv php-gd-web /bin/bash
