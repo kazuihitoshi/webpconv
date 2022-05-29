@@ -1,3 +1,4 @@
+#!/usr/local/bin/php
 <?php
 if ($argc == 1 ) {
   echo "Usage:".$argv[0]." [jpg or png filename]...\n";
@@ -8,6 +9,9 @@ foreach ( $argv as $key => $arg ){
   webpconvert($arg);
 }
 function webpconvert($file){
+  $webp = $file.'.webp';
+  if (!file_exists($file))return (false);
+  if (file_exists($webp))return (true);
   $ext = mb_strtolower(pathinfo($file)['extension']);
   $img = null;
   switch ($ext)
@@ -19,10 +23,18 @@ function webpconvert($file){
   case 'jpg':
     $img = imagecreatefromjpeg($file);
     break; 
+  case 'gif':
+    $img = imagecreatefromgif($file);
+    break; 
+  }
+  if (!imageistruecolor($img)){
+     if( !imagepalettetotruecolor($img) ){
+         return false;
+     }
   }
   if ($img){
     imagewebp($img,$file.'.webp');
     imagedestroy($img);
   }
-  return 0;
+  return true;
 }
